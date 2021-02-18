@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Projekt</title>
+</head>
+<body>
+<h1>Welcome to the app</h1>
+
+<h4><a style="font-size:40px;" th:href="@{/post}">POSTS</a></h4>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')" th:each="file : ${files}">
+    <a th:text="${file.substring( file.lastIndexOf('/')+1, file.length())}" th:href="${file}" download ></a>
+</div>
+</body>
+</html>

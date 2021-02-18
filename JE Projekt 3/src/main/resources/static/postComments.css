@@ -1,0 +1,67 @@
+section{
+    min-height: 50px;
+    width: 350px;
+    margin: 10px 30px;
+    border-style: solid;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.username {
+    margin-left: 30px;
+}
+
+.commentContent {
+    margin-left: 5px;
+    margin-right: 5px;
+    word-wrap: break-word;
+}
+
+.postContent {
+    margin-left: 10px;
+    margin-right: 10px;
+    word-wrap: break-word;
+}
+
+.post {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+.com {
+    text-align: center;
+    padding: 10px;
+    font-size: larger;
+}
+
+.links {
+    display: inline-block;
+    padding: 5px;
+}
+
+.editDel {
+    float:right;
+}
+
+#edi {
+    float: right;
+    padding: 5px;
+}
+
+#del {
+    padding: 5px;
+}
+
+#addCom {
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+}
+

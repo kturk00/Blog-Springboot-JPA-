@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/form.css}" />
+    <title>Add post</title>
+</head>
+<body>
+    <form method="POST" th:action="@{create}" th:object="${post}" >
+        <h1>Create post</h1>
+        <div th:if="${#fields.hasErrors()}">
+              <span class="validationError">
+                Please correct the problems below and resubmit.
+              </span>
+        </div>
+        <input type="hidden" th:field="*{id}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('id')}"
+              th:errors="*{id}">ID error
+        </span>
+        <label th:for="authors">Authors :</label>
+        <input type="text" th:value="${authors}" name="authors"/>
+        <br/>
+        <textarea rows="30" cols="50" th:field="*{postContent}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('postContent')}"
+              th:errors="*{postContent}">There must be some text
+        </span>
+        <label th:for="tagsL" >Tags :</label>
+        <input type="text" th:value="${tagsL}" name="tagsL"/>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>

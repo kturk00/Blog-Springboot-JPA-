@@ -1,0 +1,7 @@
+.textContainer {
+    vertical-align: top;
+}
+
+.validationError {
+    color : red;
+}

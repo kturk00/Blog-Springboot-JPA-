@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/postComments.css}" />
+    <title>Projekt</title>
+</head>
+<body>
+    <form class="upper" th:action="@{/post/}">
+      <input type="submit" value="BACK TO ALL POSTS"/>
+    </form>
+    <div class="post">
+        <p>Authors :</p>
+        <div class="links" th:each="author : ${authors}">
+            <a th:href="@{/post/author/{id}(id=${author.getId()})}" th:text="${author.getUsername()}"></a>
+        </div>
+        <p class="postContent" th:text="${post.getPostContent()}"></p>
+        <p>TAGS  :</p>
+        <div class="links" th:each="tag : ${post.getTags()}">
+            <a th:href="@{/post/tag/{id}(id=${tag})}" th:text="${tag}"></a>
+        </div>
+        <div class="editDel">
+            <a th:href="@{/post/{idP}/delete(idP=${post.getId()})}" >delete</a>
+            <a th:href="@{/post/{idP}/edit(idP=${post.getId()})}" >edit</a>
+        </div>
+    </div>
+    <div id="addCom">
+         <a  th:href="@{/comment/post/{idP}(idP=${post.getId()})}">Add new comment</a>
+    </div>
+    <p class="com">COMMENTS</p>
+    <div class="flex-container">
+        <section th:each="comment : ${comments}">
+            <p class="username" th:text="${comment.getUsername()}"></p>
+            <p class="commentContent" th:text="${comment.getCommentContent()}"></p>
+            <a id="del" th:href="@{/comment/delete/{idC}(idC=${comment.getId()})}">delete</a>
+            <a id="edi" th:href="@{/comment/edit/{idC}(idC=${comment.getId()})}">edit</a>
+
+        </section>
+    </div>
+</body>
+</html>

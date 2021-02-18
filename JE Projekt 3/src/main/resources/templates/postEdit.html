@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/form.css}" />
+    <title>Edit post</title>
+</head>
+<body>
+<form method="POST" th:action="@{/post/{idP}/edit(idP=${post.getId()})}" th:object="${post}" >
+    <h1>Edit post</h1>
+    <input type="hidden" th:field="*{id}"/>
+    <label th:for="authors">Authors :</label>
+    <input type="text" th:value="${authors}" name="authors"/>
+    <br/>
+    <textarea rows="30" cols="50" th:field="*{postContent}"/>
+    <label th:for="tagsL" >Tags :</label>
+    <input type="text" th:value="${tagsL}" name="tagsL"/>
+    <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>

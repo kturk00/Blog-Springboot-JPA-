@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <link rel="stylesheet" th:href="@{/registerStyle.css}" />
+</head>
+<body>
+<div th:switch="${message}">
+    <div th:case="'Failed'" class="alert alert-danger">
+        <strong>Failure!</strong> Registration failed. Please try again
+    </div>
+</div>
+
+<h1>REGISTRATION FORM</h1>
+<form method="POST" th:action="@{/register}" th:object="${user}">
+    <div th:if="${#fields.hasErrors()}">
+              <span class="validationError">
+                Please correct the problems below and resubmit.
+              </span>
+    </div>
+    <div>
+        <label th:for="firstName">First Name :</label>
+        <input th:field="*{firstName}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('firstName')}"
+              th:errors="*{firstName}">First name error
+        </span>
+    </div>
+    <div>
+        <label th:for="lastName">Last Name :</label>
+        <input th:field="*{lastName}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('lastName')}"
+              th:errors="*{lastName}">Last name error
+        </span>
+    </div>
+    <div>
+        <label th:for="username">Username :</label>
+        <input th:field="*{username}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}">
+        </span>
+    </div>
+    <div>
+        <label th:for="password">Password :</label>
+        <input type="password" th:field="*{password}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">Password must be between 6 and 20 characters
+        </span>
+    </div>
+    <div>
+        <label th:for="matchingPassword">Maching password :</label>
+        <input type="password" th:field="*{matchingPassword}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('matchingPassword')}"
+              th:errors="*{matchingPassword}">Password must be matching
+        </span>
+    </div>
+    <button type="submit" >submit</button>
+</form>
+
+<a th:href="@{/login}" >login</a>
+</body>
+</html>

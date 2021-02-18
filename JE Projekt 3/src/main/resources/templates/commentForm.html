@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/form.css}" />
+    <title>Create comment</title>
+</head>
+<body>
+<form method="POST" th:action="@{/comment/post/{idP}(idP=${idOfPost})}" th:object="${comment}">
+    <h1>Create comment</h1>
+    <div th:if="${#fields.hasErrors()}">
+              <span class="validationError">
+                Please correct the problems below and resubmit.
+              </span>
+    </div>
+
+    <label th:for="username">Username :</label>
+    <input type="text" th:field="*{username}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">Username error
+    </span>
+
+    <br/>
+    <textarea rows="30" cols="50" th:field="*{commentContent}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('commentContent')}"
+          th:errors="*{commentContent}">Content error
+         </span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+
+</body>
+</html>

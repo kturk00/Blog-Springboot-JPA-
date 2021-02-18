@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/stats.css}" />
+    <title>Projekt</title>
+</head>
+<body>
+<form th:action="@{/post/}">
+    <input type="submit" value="Back to posts"/>
+</form>
+<h1>STATISTICS</h1>
+<div>
+    <h2>Amount of usernames starting with A : <span th:text="${usernamesStartA}"></span></h2>
+</div>
+<div>
+    <h2>Sum of letters in all posts : <span th:text="${lettersInPosts}"></span></h2>
+</div>
+<div>
+    <h2>Longest username : <span th:text="${longestUserName}"></span></h2>
+</div>
+<div>
+    <h2>Shortest first name : <span th:text="${shortFirstName}"></span></h2>
+</div>
+<div>
+    <h2>Unique tags : <span th:text="${uniqueTags}"></span></h2>
+</div>
+
+</body>
+</html>

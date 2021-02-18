@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/posts.css}" />
+    <title>projekt</title>
+</head>
+<body>
+<form th:action="@{/}">
+    <input type="submit" value="Back to home page"/>
+</form>
+<h1>Welcome to the app</h1>
+<h1 class="topRight" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h1>
+<div sec:authorize="isAuthenticated()">
+    <form class="topRight" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div sec:authorize="isAnonymous()">
+    <form class="topRight" th:action="@{/logout}" method="post">
+        <input type="submit" value="Log In"/>
+    </form>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <form class="upper" th:action="@{/post/author/username/{username}(username=${#authentication.getPrincipal().getUsername()})}">
+        <input type="submit" value="SHOW MY POSTS"/>
+    </form>
+</div>
+<form class="upper" th:action="@{/post/stats}">
+    <input type="submit" value="Show stats"/>
+</form>
+<form class="upper" th:action="@{/post/create}">
+    <input type="submit" value="Create new post"/>
+</form>
+<h2>Showing <span th:text="${posts.size()}"></span> posts</h2>
+<div th:switch="${posts}">
+    <h2 th:case="null">No posts</h2>
+    <div class="flex-container" th:case="*">
+        <section th:each="post : ${posts}">
+            <p class="postText" th:text="${post.postContent}"></p>
+            <p><a th:href="@{/post/{id}(id=${post.id}) }">comments</a></p>
+        </section>
+    </div>
+</div>
+
+
+</body>
